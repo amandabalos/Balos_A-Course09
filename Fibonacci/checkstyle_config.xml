@@ -94,7 +94,7 @@
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="InterfaceIsType"/>
-    <module name="VisibilityModifier"/>
+    <module name="VisibilityModifier"/> -->
 
     <!-- Miscellaneous other checks. -->
     <module name="ArrayTypeStyle"/>
@@ -113,4 +113,4 @@
     <property name="onCommentFormat" value="CheckStyle\:([\w\|]+) *ON"/>
     <property name="checkFormat" value="$1"/>
   </module>
-</module>
+</module> -->
