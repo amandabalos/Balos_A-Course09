@@ -5,17 +5,29 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="Fibonacci">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../Downloads/eclipse-jee-mars-1-win32-x86_64/eclipse/"/>
+    <property name="ECLIPSE_HOME" value="../../../../Downloads/eclipse-jee-mars-1-win32-x86_64/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
     <path id="Fibonacci.classpath">
         <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
+		<copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+                <exclude name="test/"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src/test">
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
@@ -31,6 +43,8 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
+			<src path="src/test"/>
+            <exclude name="test/"/>
             <classpath refid="Fibonacci.classpath"/>
         </javac>
     </target>
@@ -47,5 +61,10 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="FibonacciUI (1)">
+        <java classname="FibonacciUI" failonerror="true" fork="yes">
+            <classpath refid="Fibonacci.classpath"/>
+        </java>
     </target>
 </project>
