@@ -11,13 +11,13 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class TestFibonacciParametized
 {
-	private final int input, expected;	
-	
-  	@Parameters
+	@Parameters
 	public static List<Object[]> data()
 	{
 		return Arrays.asList(new Object[][] {{0, 0 }, { 1, 1 }, { 2, 1 }, { 3, 2 }, { 4, 3 }, { 45, 1134903170 } });
-	} 
+	}	
+	
+  	private final int input, expected; 
 	
 	public TestFibonacciParametized(int input, int expected)
 	{
