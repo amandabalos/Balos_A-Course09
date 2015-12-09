@@ -10,7 +10,8 @@ public class FibonacciUI {
 	 * @param args
 	 *            Command-line arguments (not used)
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		long input = 0, result;
 		boolean keepRunning = true;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,9 +29,9 @@ public class FibonacciUI {
 				keepRunning = false;
 				continue;
 			} else {
-				try {
+				try{
 					input = Long.parseLong(inputString);
-				} catch (NumberFormatException nfe) {
+				}catch(NumberFormatException nfe ){
 					System.err.println("Invalid Format! Did you enter a integer?");
 					continue;
 				}
