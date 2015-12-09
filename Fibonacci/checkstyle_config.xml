@@ -111,5 +111,5 @@
     <property name="offCommentFormat" value="CheckStyle\:([\w\|]+) *OFF"/>
     <property name="onCommentFormat" value="CheckStyle\:([\w\|]+) *ON"/>
     <property name="checkFormat" value="$1"/>
-  </module>
-</module> -->
+  </module> -->
+</module>
