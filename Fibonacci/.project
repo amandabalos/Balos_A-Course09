@@ -14,4 +14,5 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<checkstyle config="src/configuration.xml" file="src/test/TestFibonacci.java"/>
 </projectDescription>
