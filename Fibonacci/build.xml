@@ -69,6 +69,6 @@
         </java>
     </target>
 	<target name="checkstyle">
-		<checkstyle config="checkstyle_config.xml" file="src/test/TestFibonacci.java"/>
+		<checkstyle config="checkstyle_config.xml" file="src/FibonacciUI.java"/>
 	</target>
 </project>
