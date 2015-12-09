@@ -70,12 +70,11 @@
             <classpath refid="Fibonacci.classpath"/>
         </java>
     </target>
-	<target name="checkstyle"
-        description="Generates a report of code convention violations.">
-		<checkstyle config="checkstyle_config.xml"
-              failureProperty="checkstyle.failure"
-              failOnViolation="false">
-			<fileset dir="src" includes="src/*.java"/>
-		</checkstyle>
-	</target>
+	<checkstyle config="sun_checks.xml" failOnViolation="false">
+		<fileset dir="src">
+			<include name="**/*.java"/>
+		</fileset>
+		<formatter type="plain"/>
+		<formatter type="xml" toFile="checkstyle-result.xml"/>
+	</checkstyle>
 </project>
