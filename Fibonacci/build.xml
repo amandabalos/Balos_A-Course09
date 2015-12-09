@@ -68,5 +68,7 @@
             <classpath refid="Fibonacci.classpath"/>
         </java>
     </target>
-	<checkstyle config="checkstyle_config.xml" file="src/FibonacciUI.java"/>
+	<target name="checkstyle">
+		<checkstyle config="checkstyle_config.xml" file="src/FibonacciUI.java"/>
+	</target>
 </project>
