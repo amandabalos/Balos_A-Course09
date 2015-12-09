@@ -68,7 +68,12 @@
             <classpath refid="Fibonacci.classpath"/>
         </java>
     </target>
-	<target name="checkstyle">
-		<checkstyle config="checkstyle_config.xml" file="src/FibonacciUI.java"/>
+	<target name="checkstyle"
+        description="Generates a report of code convention violations.">
+		<checkstyle config="checkstyle_config.xml"
+              failureProperty="checkstyle.failure"
+              failOnViolation="false">
+			<fileset dir="src" includes="**/*.java"/>
+		</checkstyle>
 	</target>
 </project>
