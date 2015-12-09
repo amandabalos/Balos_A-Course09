@@ -16,15 +16,8 @@
     <path id="Fibonacci.classpath">
         <pathelement location="bin"/>
         <path refid="JUnit 4.libraryclasspath"/>
-    </path>	
-	<property name="cobertura.dir" value="bin/cobertura" />
-	<path id="cobertura.classpath">
-		<fileset dir="${cobertura.dir}">
-			<include name="cobertura.jar" />
-			<include name="lib/**/*.jar" />
-		</fileset>
-	</path>
-	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />	
+        <pathelement location="../../../../Downloads/checkstyle-6.13-all.jar"/>
+    </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
@@ -70,9 +63,12 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="FibonacciUI (1)">
+    <target name="FibonacciUI">
         <java classname="FibonacciUI" failonerror="true" fork="yes">
             <classpath refid="Fibonacci.classpath"/>
         </java>
     </target>
+	<target name="checkstyle">
+		<checkstyle config="checkstyle_config.xml" file="src/test/TestFibonacci.java"/>
+	</target>
 </project>
