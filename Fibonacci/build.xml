@@ -75,7 +75,7 @@
 		<checkstyle config="checkstyle_config.xml"
               failureProperty="checkstyle.failure"
               failOnViolation="false">
-			<fileset dir="src" includes="**/*.java"/>
+			<fileset dir="src" includes="src/*.java"/>
 		</checkstyle>
 	</target>
 </project>
