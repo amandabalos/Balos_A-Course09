@@ -187,5 +187,5 @@
 	</target>
 	<target depends="clean" name="cleanall"/>
 
-	<target name="coverage" depends="compile,instrument,test,coverage-report,summary-coverage-report,alternate-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports."/>
+	<target name="coverage" depends="compile,instrument,test,coverage-report,summary-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports."/>
 </project>
