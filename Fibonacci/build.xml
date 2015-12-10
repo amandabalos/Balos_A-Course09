@@ -44,6 +44,13 @@
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${instrumented.dir}" />
+		<mkdir dir="${reports.xml.dir}" />
+		<mkdir dir="${reports.html.dir}" />
+		<mkdir dir="${coverage.xml.dir}" />
+		<mkdir dir="${coverage.summaryxml.dir}" />
+		<mkdir dir="${coverage.html.dir}" />
     </target>
     <target name="clean">
         <delete dir="bin"/>
@@ -86,15 +93,6 @@
 		<formatter type="plain"/>
 		<formatter type="xml" toFile="checkstyle-result.xml"/>
 	</checkstyle>
-	<target name="init">
-		<mkdir dir="${classes.dir}" />
-		<mkdir dir="${instrumented.dir}" />
-		<mkdir dir="${reports.xml.dir}" />
-		<mkdir dir="${reports.html.dir}" />
-		<mkdir dir="${coverage.xml.dir}" />
-		<mkdir dir="${coverage.summaryxml.dir}" />
-		<mkdir dir="${coverage.html.dir}" />
-	</target>
 
 	<target name="compile" depends="init">
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="yes">
