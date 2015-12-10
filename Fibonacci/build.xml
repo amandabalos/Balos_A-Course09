@@ -44,12 +44,6 @@
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
-		<mkdir dir="bin" />
-		<mkdir dir="${instrumented.dir}" />
-		<mkdir dir="${reports.xml.dir}" />
-		<mkdir dir="${reports.html.dir}" />
-		<mkdir dir="${coverage.xml.dir}" />
-		<mkdir dir="${coverage.summaryxml.dir}" />
     </target>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
@@ -89,16 +83,15 @@
 		<formatter type="xml" toFile="checkstyle-result.xml"/>
 	</checkstyle>
 
-	<cobertura-instrument todir="${instrumented.dir}">
-		<ignore regex="org.apache.log4j.*" />
-		<fileset dir="bin">
-			<include name="**/*.class" />
-			<exclude name="**/*Test.class" />
-		</fileset>
-		<fileset dir="bin">
-			<include name="cobertura-2.1.1.jar" />
-		</fileset>
-	</cobertura-instrument>
+	<target name="instrument">
+		<cobertura-instrument todir="bin">
+			<ignore regex="org.apache.log4j.*" />
+			<fileset dir="bin">
+				<include name="**/*.class" />
+				<exclude name="**/*Test.class" />
+			</fileset>
+		</cobertura-instrument>
+	</target>
 	
 	<junit fork="yes" dir="" failureProperty="test.failed">
 		<ignore regex="org.apache.log4j.*" />
