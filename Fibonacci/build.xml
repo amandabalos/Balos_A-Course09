@@ -124,10 +124,11 @@
 				<include name="**/*Test.java" />
 			</fileset>
 		</batchtest>
+	</junit>
 		
-		<cobertura-report format="xml" destdir="src" >
-			<fileset dir="src">
-				<include name="**/*.java" />
-			</fileset>
-		</cobertura-report>
+	<cobertura-report format="xml" destdir="src" >
+		<fileset dir="src">
+			<include name="**/*.java" />
+		</fileset>
+	</cobertura-report>
 </project>
