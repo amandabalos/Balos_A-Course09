@@ -121,7 +121,7 @@
 					don't instrument the test classes.
 				-->
 				<include name="**/*.class" />
-				<exclude name="**/*Test.class" />
+				<exclude name="**/Test*.class" />
 			</fileset>
 		</cobertura-instrument>
 	</target>
@@ -146,7 +146,7 @@
 			<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
 			<batchtest todir="${reports.xml.dir}" unless="testcase">
 				<fileset dir="${src.dir}">
-					<include name="**/*Test.java" />
+					<include name="**/Test*.java" />
 				</fileset>
 			</batchtest>
 		</junit>
