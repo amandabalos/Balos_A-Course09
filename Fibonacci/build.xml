@@ -97,6 +97,7 @@
 		</fileset>
 		<fileset dir="bin">
 			<include name="cobertura-2.1.1.jar" />
+		</fileset>
 	</cobertura-instrument>
 	
 	<junit fork="yes" dir="" failureProperty="test.failed">
