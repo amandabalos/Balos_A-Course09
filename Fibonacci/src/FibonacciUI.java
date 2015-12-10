@@ -38,6 +38,7 @@ public class FibonacciUI {
 				}
 				// Adding a really really really long line that won't break the build but cause Checkstyle Errors to incres
 				result = Fibonacci.calculate(input);
+				System.out.println("Thanks for entering: " + inputString)
 				System.out.println("Fibonacci result is: " + result);
 			}
 		}
