@@ -23,7 +23,7 @@
 	<property environment="env"/>
 	<property name="cobertura" value="cobertura" />
 	<path id="cobertura.classpath">
-		<fileset dir="${cobertura.dir}">
+		<fileset dir="cobertura">
 			<include name="cobertura.jar" />
 			<include name="lib/**/*.jar" />
 		</fileset>
@@ -44,13 +44,12 @@
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
-		<mkdir dir="${classes.dir}" />
+		<mkdir dir="bin" />
 		<mkdir dir="${instrumented.dir}" />
 		<mkdir dir="${reports.xml.dir}" />
 		<mkdir dir="${reports.html.dir}" />
 		<mkdir dir="${coverage.xml.dir}" />
 		<mkdir dir="${coverage.summaryxml.dir}" />
-		<mkdir dir="${coverage.html.dir}" />
     </target>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
