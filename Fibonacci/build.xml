@@ -130,5 +130,5 @@
 		<fileset dir="src">
 			<include name="**/*.java" />
 		</fileset>
-	</cobertura-report>
+	</cobertura-report> 
 </project>
