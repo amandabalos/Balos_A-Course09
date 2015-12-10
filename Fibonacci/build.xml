@@ -89,102 +89,44 @@
 		<formatter type="xml" toFile="checkstyle-result.xml"/>
 	</checkstyle>
 
-	<target name="compile" depends="init">
-		<javac srcdir="src" destdir="bin" debug="yes">
-			<classpath refid="cobertura.classpath" />
-		</javac>
-	</target>
-
-	<target name="instrument" depends="init,compile">
+	<cobertura-instrument todir="${instrumented.dir}">
+		<ignore regex="org.apache.log4j.*" />
+		<fileset dir="bin">
+			<include name="**/*.class" />
+			<exclude name="**/*Test.class" />
+		</fileset>
+		<fileset dir="bin">
+			<include name="cobertura-2.1.1.jar" />
+	</cobertura-instrument>
+	
+	<junit fork="yes" dir="" failureProperty="test.failed">
+		<ignore regex="org.apache.log4j.*" />
+		
 		<!--
-			Remove the coverage data file and any old instrumentation.
+			Note the classpath order: instrumented classes are before the
+			original (uninstrumented) classes. This is important.
 		-->
-		<delete file="cobertura.ser"/>
-		<delete dir="${instrumented.dir}" />
-
+		<classpath location="${instrumented.dir}" />
+		<classpath location="bin" />
+		
 		<!--
-			Instrument the application classes, writing the
-			instrumented classes into ${build.instrumented.dir}.
+			The instrumented classes reference classes used by the
+			Cobertura runtime, so Cobertura and its dependencies
+			must be on your classpath.
 		-->
-		<cobertura-instrument todir="${instrumented.dir}">
-			<!--
-				The following line causes instrument to ignore any
-				source line containing a reference to slf4j/logback, for the
-				purposes of coverage reporting.
-			-->
-			<ignore regex="org.slf4j.*" />
-
-			<fileset dir="bin">
-				<!--
-					Instrument all the application classes, but
-					don't instrument the test classes.
-				-->
-				<include name="**/*.class" />
-				<exclude name="**/Test*.class" />
-			</fileset>
-		</cobertura-instrument>
-	</target>
-
-	<target name="test" depends="init,compile">
-		<junit fork="yes" failureProperty="test.failed">
-			<!--
-				Note the classpath order: instrumented classes are before the
-				original (uninstrumented) classes.  This is important.
-			-->
-			<classpath location="${instrumented.dir}" />
-			<classpath location="bin" />
-
-			<!--
-				The instrumented classes reference classes used by the
-				Cobertura runtime, so Cobertura and its dependencies
-				must be on your classpath.
-			-->
-			<classpath refid="cobertura.classpath" />
-
-			<formatter type="xml" />
-			<test name="${testcase}" todir="src" if="testcase" />
-			<batchtest todir="src" unless="testcase">
-				<fileset dir="src">
-					<include name="**/Test*.java" />
-				</fileset>
-			</batchtest>
-		</junit>
-
-		<junitreport todir="src">
+		<classpath refid="cobertura" />
+		
+		<formatter type="xml" />
+		<test name="${testcase}" todir="src" if="testcase" />
+		<batchtest todir="src" unless="testcase">
 			<fileset dir="src">
-				<include name="coverage-report.xml" />
+				<include name="**/*Test.java" />
 			</fileset>
-		</junitreport>
-	</target>
-
-	<target name="coverage-check">
-		<cobertura-check branchrate="34" totallinerate="100" />
-	</target>
-
-	<target name="coverage-report">
-		<!--
-			Generate an XML file containing the coverage data using
-			the "srcdir" attribute.
-		-->
-		<cobertura-report srcdir="${src.dir}" destdir="${coverage.xml.dir}" format="xml" />
-	</target>
-
-	<target name="summary-coverage-report">
-		<!--
-			Generate an summary XML file containing the coverage data using
-			the "srcdir" attribute.
-		-->
-		<cobertura-report srcdir="${src.dir}" destdir="${coverage.summaryxml.dir}" format="summaryXml" />
-	</target>
-
-	<target name="clean" description="Remove all files created by the build/test process.">
-		<delete dir="${classes.dir}" />
-		<delete dir="${instrumented.dir}" />
-		<delete dir="${reports.dir}" />
-		<delete file="cobertura.log" />
-		<delete file="cobertura.ser" />
-	</target>
-	<target depends="clean" name="cleanall"/>
-
-	<target name="coverage" depends="compile,instrument,test,coverage-report,summary-coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports."/>
+		</batchtest>
+		
+		<cobertura-report format="xml" destdir="src" >
+			<fileset dir="src">
+				<include name="**/*.java" />
+			</fileset>
+		</cobertura-report>
 </project>
