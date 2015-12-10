@@ -93,7 +93,7 @@
 		</cobertura-instrument>
 	</target>
 	
-	<junit fork="yes" dir="" failureProperty="test.failed">		
+	<junit fork="yes" dir="src" failureProperty="test.failed">		
 		<!--
 			Note the classpath order: instrumented classes are before the
 			original (uninstrumented) classes. This is important.
