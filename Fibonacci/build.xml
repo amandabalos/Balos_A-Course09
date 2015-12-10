@@ -98,7 +98,6 @@
 			Note the classpath order: instrumented classes are before the
 			original (uninstrumented) classes. This is important.
 		-->
-		<classpath location="${instrumented.dir}" />
 		<classpath location="bin" />
 		
 		<!--
@@ -106,7 +105,7 @@
 			Cobertura runtime, so Cobertura and its dependencies
 			must be on your classpath.
 		-->
-		<classpath refid="cobertura" />
+		<classpath refid="src" />
 		
 		<formatter type="xml" />
 		<test name="${testcase}" todir="src" if="testcase" />
