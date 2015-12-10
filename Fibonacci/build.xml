@@ -142,19 +142,18 @@
 			<classpath refid="cobertura.classpath" />
 
 			<formatter type="xml" />
-			<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
-			<batchtest todir="${reports.xml.dir}" unless="testcase">
-				<fileset dir="${src.dir}">
+			<test name="${testcase}" todir="src" if="testcase" />
+			<batchtest todir="src" unless="testcase">
+				<fileset dir="src">
 					<include name="**/Test*.java" />
 				</fileset>
 			</batchtest>
 		</junit>
 
-		<junitreport todir="${reports.xml.dir}">
-			<fileset dir="${reports.xml.dir}">
+		<junitreport todir="src">
+			<fileset dir="src">
 				<include name="coverage-report.xml" />
 			</fileset>
-			<report format="frames" todir="${reports.html.dir}" />
 		</junitreport>
 	</target>
 
