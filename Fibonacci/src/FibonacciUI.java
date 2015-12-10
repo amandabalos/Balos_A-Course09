@@ -6,7 +6,7 @@ public class FibonacciUI {
 
 	/**
 	 * Main entry point for the UI.
-	 * 
+	 *
 	 * @param args
 	 *            Command-line arguments (not used)
 	 */
@@ -14,6 +14,7 @@ public class FibonacciUI {
 	{
 		long input = 0, result;
 		boolean keepRunning = true;
+		int number;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (keepRunning == true) {
 			System.out.println("Enter Integer to Calculate Fibonacci value, or q to quit:");
@@ -35,6 +36,7 @@ public class FibonacciUI {
 					System.err.println("Invalid Format! Did you enter a integer?");
 					continue;
 				}
+				// Adding a really really really long line that won't break the build but cause Checkstyle Errors to incres
 				result = Fibonacci.calculate(input);
 				System.out.println("Fibonacci result is: " + result);
 			}
